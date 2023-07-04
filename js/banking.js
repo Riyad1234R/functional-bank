@@ -1,15 +1,20 @@
+function dobuleIt(num) {
+    const result = num * 2;
+    return result;
+}
+const fiveDouble = dobuleIt(5);
+const sevenDobule = dobuleIt(7);
 
-function getInputValue() {
-    const depositInput = document.getElementById('deposit-input');
+
+
+function getInputValue(inputId) {
+    const depositInput = document.getElementById(inputId);
     const newDepositAmountText = depositInput.value;
     const newDepositAmount = parseFloat(newDepositAmountText);
     // celear deposit input
     depositInput.value = '';
     return newDepositAmount;
 }
-
-
-
 
 
 // handle deposite button 
@@ -19,7 +24,7 @@ document.getElementById('deposit-button').addEventListener
         // const depositInput = document.getElementById('deposit-input');
         // const newDepositAmountText = depositInput.value;
         // const newDepositAmount = parseFloat(newDepositAmountText);
-        const newDepositAmount = getInputValue();
+        const newDepositAmount = getInputValue('deposit-input');
 
 
         // update deposite total
@@ -41,10 +46,11 @@ document.getElementById('deposit-button').addEventListener
 
 // handle withdraw event handler
 document.getElementById('withdraw-button').addEventListener('click', function () {
-    const withdrawInput = document.getElementById('withdraw-input');
-    const withdrawAmountText = withdrawInput.value;
-    const newWithdrawAmount = parseFloat(withdrawAmountText);
-    console.log(newWithdrawAmount);
+    // const withdrawInput = document.getElementById('withdraw-input');
+    // const withdrawAmountText = withdrawInput.value;
+    // const newWithdrawAmount = parseFloat(withdrawAmountText);
+    // console.log(newWithdrawAmount);
+    const newWithdrawAmount = getInputValue('withdraw-input');
 
     // set withdraw total
     const withdrawTotal = document.getElementById('withdraw-total');
@@ -61,9 +67,6 @@ document.getElementById('withdraw-button').addEventListener('click', function ()
     const previousBlanceTotal = parseFloat(previousBlanceText);
     const newBlanceTotal = previousBlanceTotal - newWithdrawAmount;
     blanceTotal.innerText = newBlanceTotal;
-
-    // clear wihdraw input 
-    withdrawInput.value = '';
 
 });
 
