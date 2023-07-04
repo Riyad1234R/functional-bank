@@ -15,6 +15,13 @@ function getInputValue(inputId) {
     depositInput.value = '';
     return newDepositAmount;
 }
+function updateTotalField(totalField, newDepositAmount) {
+    const depositTotal = document.getElementById(totalField);
+    const previousDepositText = depositTotal.innerText;
+    const previousDepositAMount = parseFloat(previousDepositText);
+    const newDepositTotal = parseFloat(previousDepositAMount + newDepositAmount);
+    depositTotal.innerText = newDepositTotal;
+}
 
 
 // handle deposite button 
@@ -28,11 +35,12 @@ document.getElementById('deposit-button').addEventListener
 
 
         // update deposite total
-        const depositTotal = document.getElementById('deposit-total');
-        const previousDepositText = depositTotal.innerText;
-        const previousDepositAMount = parseFloat(previousDepositText);
-        const newDepositTotal = parseFloat(previousDepositAMount + newDepositAmount);
-        depositTotal.innerText = newDepositTotal;
+        // const depositTotal = document.getElementById('deposit-total');
+        // const previousDepositText = depositTotal.innerText;
+        // const previousDepositAMount = parseFloat(previousDepositText);
+        // const newDepositTotal = parseFloat(previousDepositAMount + newDepositAmount);
+        // depositTotal.innerText = newDepositTotal;
+        updateTotalField('deposit-total', newDepositAmount);
 
         // update acount blance
         const blanceTotal = document.getElementById('blance-total');
@@ -53,14 +61,14 @@ document.getElementById('withdraw-button').addEventListener('click', function ()
     const newWithdrawAmount = getInputValue('withdraw-input');
 
     // set withdraw total
-    const withdrawTotal = document.getElementById('withdraw-total');
-    const previousWithdrawText = withdrawTotal.innerText;
-    const previousWithdrawTotal = parseFloat(previousWithdrawText);
+    // const withdrawTotal = document.getElementById('withdraw-total');
+    // const previousWithdrawText = withdrawTotal.innerText;
+    // const previousWithdrawTotal = parseFloat(previousWithdrawText);
 
+    // const newWithdrawTotal = previousWithdrawTotal + newWithdrawAmount;
+    // withdrawTotal.innerText = newWithdrawTotal
 
-    const newWithdrawTotal = previousWithdrawTotal + newWithdrawAmount;
-    withdrawTotal.innerText = newWithdrawTotal
-
+    updateTotalField('withdraw-total', newWithdrawAmount);
     // update blance
     const blanceTotal = document.getElementById('blance-total');
     const previousBlanceText = blanceTotal.innerText;
