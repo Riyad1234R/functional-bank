@@ -22,6 +22,26 @@ function updateTotalField(totalField, newDepositAmount) {
     const newDepositTotal = parseFloat(previousDepositAMount + newDepositAmount);
     depositTotal.innerText = newDepositTotal;
 }
+function getCrruntBlance() {
+    const blanceTotal = document.getElementById('blance-total');
+    const blanceTotalText = blanceTotal.innerText;
+    const previousBlanceTotal = parseFloat(blanceTotalText);
+    return previousBlanceTotal
+}
+function updateBlance(newDepositAmount, isAdd) {
+    const blanceTotal = document.getElementById('blance-total');
+    // const blanceTotalText = blanceTotal.innerText;
+    // const previousBlanceTotal = parseFloat(blanceTotalText);
+    // const newBlanceTotal = previousBlanceTotal + newDepositAmount;
+    // blanceTotal.innerText = newBlanceTotal;
+    previousBlanceTotal = getCrruntBlance();
+    if (isAdd == true) {
+        blanceTotal.innerText = previousBlanceTotal + newDepositAmount;
+    }
+    else {
+        blanceTotal.innerText = previousBlanceTotal - newDepositAmount;
+    }
+}
 
 
 // handle deposite button 
@@ -32,6 +52,11 @@ document.getElementById('deposit-button').addEventListener
         // const newDepositAmountText = depositInput.value;
         // const newDepositAmount = parseFloat(newDepositAmountText);
         const newDepositAmount = getInputValue('deposit-input');
+        if (newDepositAmount > 0) {
+            updateTotalField('deposit-total', newDepositAmount);
+            updateBlance(newDepositAmount, true);
+        }
+
 
 
         // update deposite total
@@ -40,14 +65,14 @@ document.getElementById('deposit-button').addEventListener
         // const previousDepositAMount = parseFloat(previousDepositText);
         // const newDepositTotal = parseFloat(previousDepositAMount + newDepositAmount);
         // depositTotal.innerText = newDepositTotal;
-        updateTotalField('deposit-total', newDepositAmount);
 
         // update acount blance
-        const blanceTotal = document.getElementById('blance-total');
-        const blanceTotalText = blanceTotal.innerText;
-        const previousBlanceTotal = parseFloat(blanceTotalText);
-        const newBlanceTotal = previousBlanceTotal + newDepositAmount;
-        blanceTotal.innerText = newBlanceTotal;
+        // const blanceTotal = document.getElementById('blance-total');
+        // const blanceTotalText = blanceTotal.innerText;
+        // const previousBlanceTotal = parseFloat(blanceTotalText);
+        // const newBlanceTotal = previousBlanceTotal + newDepositAmount;
+        // blanceTotal.innerText = newBlanceTotal;
+
 
 
     })
@@ -59,7 +84,14 @@ document.getElementById('withdraw-button').addEventListener('click', function ()
     // const newWithdrawAmount = parseFloat(withdrawAmountText);
     // console.log(newWithdrawAmount);
     const newWithdrawAmount = getInputValue('withdraw-input');
-
+    const crruentBlance = getCrruntBlance();
+    if (newWithdrawAmount > 0 && newWithdrawAmount < crruentBlance) {
+        updateTotalField('withdraw-total', newWithdrawAmount);
+        updateBlance(newWithdrawAmount, false);
+    }
+    if (newWithdrawAmount > crruentBlance) {
+        console.error();
+    }
     // set withdraw total
     // const withdrawTotal = document.getElementById('withdraw-total');
     // const previousWithdrawText = withdrawTotal.innerText;
@@ -68,13 +100,13 @@ document.getElementById('withdraw-button').addEventListener('click', function ()
     // const newWithdrawTotal = previousWithdrawTotal + newWithdrawAmount;
     // withdrawTotal.innerText = newWithdrawTotal
 
-    updateTotalField('withdraw-total', newWithdrawAmount);
     // update blance
-    const blanceTotal = document.getElementById('blance-total');
-    const previousBlanceText = blanceTotal.innerText;
-    const previousBlanceTotal = parseFloat(previousBlanceText);
-    const newBlanceTotal = previousBlanceTotal - newWithdrawAmount;
-    blanceTotal.innerText = newBlanceTotal;
+    // const blanceTotal = document.getElementById('blance-total');
+    // const previousBlanceText = blanceTotal.innerText;
+    // const previousBlanceTotal = parseFloat(previousBlanceText);
+    // const newBlanceTotal = previousBlanceTotal - newWithdrawAmount;
+    // blanceTotal.innerText = newBlanceTotal;
+
 
 });
 
